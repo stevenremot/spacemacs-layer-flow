@@ -1,0 +1,27 @@
+#+TITLE: flow layer
+
+* Table of Contents                                        :TOC_4_gh:noexport:
+- [[#description][Description]]
+- [[#install][Install]]
+- [[#key-bindings][Key bindings]]
+
+* Description
+
+This layer setups Emacs for working with flow files. It provides syntax checking
+throught ~flycheck-flow~, and autocompletion throught ~company-flow~. You also
+can use check types and jump to definition of symbols using ~flow-minor-mode~.
+
+It has some problems, like not working properly with the javascript layer.
+
+* Install
+
+Clone this repository in your private layers directory. Then declare the flow layer
+in your ~.spacemacs~
+
+* Key bindings
+
+| Key Binding | Description                            |
+|-------------+----------------------------------------|
+| ~M-.~       | Jump to definition                     |
+| ~C-c C-c t~ | Check the type of a symbol             |
+| ~C-c C-c s~ | Display all flow errors in the project |
