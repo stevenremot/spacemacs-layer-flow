@@ -15,8 +15,8 @@ It has some problems, like not working properly with the javascript layer.
 
 * Install
 
-Clone this repository in your private layers directory. Then declare the flow layer
-in your ~.spacemacs~
+Run =git clone https://github.com/stevenremot/spacemacs-layer-flow.git ~/.emacs.d/private/flow/=.
+Then declare the flow layer in your ~.spacemacs~.
 
 * Key bindings
 
