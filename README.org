@@ -7,13 +7,19 @@
 
 * Description
 
-This layer setups Emacs for working with flow files. It provides syntax checking
-throught ~flycheck-flow~, and autocompletion throught ~company-flow~. You also
-can use check types and jump to definition of symbols using ~flow-minor-mode~.
+This layer setups Emacs for working with flow files. It provides syntax
+checking, jump to definition and autocompletion using ~lsp-mode~, ~company-lsp~
+and ~lsp-javascript-flow~.
 
 It has some problems, like not working properly with the javascript layer.
 
 * Install
+
+Before hand, make sure to install ~flow-language-server~ on your machine:
+
+#+BEGIN_SRC emacs-lisp
+npm i -g flow-language-server
+#+END_SRC
 
 Run =git clone https://github.com/stevenremot/spacemacs-layer-flow.git ~/.emacs.d/private/flow/=.
 Then declare the flow layer in your ~.spacemacs~.
@@ -23,5 +29,3 @@ Then declare the flow layer in your ~.spacemacs~.
 | Key Binding | Description                            |
 |-------------+----------------------------------------|
 | ~M-.~       | Jump to definition                     |
-| ~C-c C-c t~ | Check the type of a symbol             |
-| ~C-c C-c s~ | Display all flow errors in the project |

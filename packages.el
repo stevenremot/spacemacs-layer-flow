@@ -30,7 +30,10 @@
 ;;; Code:
 
 (defconst flow-packages
-  '(flow-minor-mode flycheck-flow company-flow)
+  '(company-lsp
+    (lsp-javascript-flow
+     :location (recipe :fetcher github
+                       :repo "stevenremot/emacs-lsp-javascript-flow")))
   "The list of Lisp packages required by the flow layer.
 
 Each entry is either:
@@ -59,24 +62,16 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 
-(defun flow/init-flow-minor-mode ()
-  (use-package flow-minor-mode
-    :config (progn
-              (add-hook 'js-mode-hook #'flow-minor-enable-automatically)
-              (add-hook 'js2-mode-hook #'flow-minor-enable-automatically)
-              (add-hook 'rjsx-mode-hook #'flow-minor-enable-automatically))))
+(defun flow/init-company-lsp ()
+  (use-package company-lsp
+    :init (eval-after-load 'company
+            '(add-to-list 'company-backends #'company-lsp))))
 
-(defun flow/init-flycheck-flow ()
-  (use-package flycheck-flow
-    :init (add-hook 'js-mode-hook #'flycheck-mode)
-    :config (progn
-              (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))))
-
-(defun flow/init-company-flow ()
-  (use-package company-flow
+(defun flow/init-lsp-javascript-flow ()
+  (use-package lsp-javascript-flow
     :init (progn
-            (add-hook 'js-mode-hook #'company-mode)
-            (eval-after-load 'company
-              '(add-to-list 'company-backends #'company-flow)))))
+            (add-hook 'js-mode-hook #'spacemacs/enable-lsp-javascript-flow)
+            (add-hook 'js2-mode-hook #'spacemacs/enable-lsp-javascript-flow)
+            (eval-after-load 'lsp-mode '(spacemacs/enable-js-flycheck-lsp)))))
 
 ;;; packages.el ends here
