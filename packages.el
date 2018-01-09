@@ -30,8 +30,7 @@
 ;;; Code:
 
 (defconst flow-packages
-  '(company-lsp
-    (lsp-javascript-flow
+  '((lsp-javascript-flow
      :location (recipe :fetcher github
                        :repo "stevenremot/emacs-lsp-javascript-flow")))
   "The list of Lisp packages required by the flow layer.
@@ -62,16 +61,11 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 
-(defun flow/init-company-lsp ()
-  (use-package company-lsp
-    :init (eval-after-load 'company
-            '(add-to-list 'company-backends #'company-lsp))))
-
 (defun flow/init-lsp-javascript-flow ()
   (use-package lsp-javascript-flow
     :init (progn
-            (add-hook 'js-mode-hook #'spacemacs/enable-lsp-javascript-flow)
-            (add-hook 'js2-mode-hook #'spacemacs/enable-lsp-javascript-flow)
-            (eval-after-load 'lsp-mode '(spacemacs/enable-js-flycheck-lsp)))))
+            (add-hook 'js-mode-hook #'lsp-javascript-flow-enable)
+            (add-hook 'js2-mode-hook #'lsp-javascript-flow-enable)
+            (add-hook 'lsp-flycheck '(spacemacs/enable-js-flycheck-lsp)))))
 
 ;;; packages.el ends here
